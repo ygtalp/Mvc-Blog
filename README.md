@@ -1,7 +1,7 @@
 # Mvc Blog 
 <a href="http://dummpster.com" target="_blank">dummpster.com</a>
 <a href="http://dummpster.com">dummpster.com</a>
-[Google](https://google.com" target="_blank)
+[dummpster.com](http://dummpster.com/?target=_blank)
 A simple Mvc Blog with Bootstrap.
 
 As admin, you can add categories and articles in admin panel. After login, the admin panel is accessed according to the member type.
