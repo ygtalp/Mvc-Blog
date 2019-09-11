@@ -1,0 +1,173 @@
+﻿@model IEnumerable<MvcBlogg.Models.Makale>
+
+@{
+    ViewBag.Title = "BlogAra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="p-3 mb-2 bg-dark text-white" style="margin-top:2px">
+
+    <h4 id="txt" name="text">Aradığınız kelime: <strong><em>@Request["Ara"]</em></strong></h4>
+</div>
+
+@*<script type="text/javascript">
+    function fnc() {
+        var sonuc = document.getElementById("Araa").value;
+        document.getElementById("txt").value = sonuc;
+
+    }
+
+</script>*@
+
+@*document.getElementById('txt').value=sonuc;*@
+
+
+@*<script>
+        $(document).ready(function(){
+            $("#Ara").click(function(){
+                $("#txt").val("Hello world!");
+            });
+        });
+    </script>*@
+
+
+@*<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#Ara").click(function () {
+                var sonuc = $("#Araa").val();
+                $("#txt").val(sonuc)
+            });
+
+
+        });
+
+    </script>*@
+
+@*<script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+
+            $("#Ara").click(function () {
+                var sonuc = $('#Ara').val();
+                $('#txt').val("sonuc");
+            });
+
+        });
+    </script>*@
+
+
+
+@*<script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            $("#Ara").click(function () {
+                var sonuc = document.getElementById("Araa").value;
+                document.getElementById("txt").value = sonuc;
+            });
+        });
+
+    </script>*@
+
+
+
+
+@foreach (var item in Model)
+{
+
+    <article class="card mb-4">
+        <img class="card-img-top img-responsive" src="@item.Foto" alt="Card image cap">
+        <div class="card-body">
+            <h2>
+                <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+            </h2>
+            @if (item.Icerik.Length > 150)
+                {
+                <p class="card-text">
+                    @Html.Raw(item.Icerik.Substring(0, 500))
+                    . . .
+                </p>
+            }
+            else
+            {
+                @Html.Raw(item.Icerik)
+            }
+
+            <a href="/Home/MakaleDetay/@item.MakaleId" class="btn btn-dark" style="color:#fec771;border-color:#000000" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'">Devamını Oku &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="fas fa-clock"></i>
+            @String.Format("{0: MMMM yyyy}", item.Tarih)
+            |
+            @*<i class="fas fa-user"></i>*@
+            <img src="@item.Uye.Foto" class="rounded-circle img-responsive" width="25" />
+            <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Uye/Index/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+            |
+            <i class="fas fa-edit"></i>
+            <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/KategoriMakale/@item.Kategori.KategoriId">@item.Kategori.KategoriAdi</a>
+            |
+            <i class="fas fa-tags"></i> @item.Etikets.Count()
+            |
+            <i class="fas fa-eye"></i> @item.Okunma
+            |
+            <i class="far fa-comments"></i> @item.Yorums.Count()
+
+        </div>
+    </article>
+}
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori.KategoriAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uye.KullaniciAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Baslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Okunma)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategori.KategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uye.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Baslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Okunma)
+            </td>
+
+        </tr>
+    }
+
+    </table>*@
+

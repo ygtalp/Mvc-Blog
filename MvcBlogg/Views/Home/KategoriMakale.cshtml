@@ -1,0 +1,68 @@
+﻿@using MvcBlogg.Models
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Bootstrap4
+@model IEnumerable<MvcBlogg.Models.Makale>
+
+@{
+    ViewBag.Title = "KategoriMakale";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var i in Model)
+{<div class="p-3 mb-2 bg-dark text-white" style="margin-top:2px"><h3>Kategori: @i.Kategori.KategoriAdi </h3></div>
+    
+    break;
+}
+<hr />
+
+
+@foreach (var item in Model)
+{
+
+    <article class="card mb-4">
+        <img class="card-img-top img-responsive" src="@item.Foto" alt="Card image cap">
+        <div class="card-body">
+            <h2>
+                <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+            </h2>
+            @if (item.Icerik.Length > 150)
+                {
+                <p class="card-text">
+                    @Html.Raw(item.Icerik.Substring(0, 100))
+                    . . .
+                </p>
+            }
+            else
+            {
+                @Html.Raw(item.Icerik)
+            }
+
+            <a href="/Home/MakaleDetay/@item.MakaleId" class="btn btn-dark" style="color:#fec771;border-color:#000000" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'">Devamını Oku &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="fas fa-clock"></i>
+            @String.Format("{0: MMMM yyyy}", item.Tarih)
+            |
+            @*<i class="fas fa-user"></i>*@
+            <img src="@item.Uye.Foto" class="rounded-circle img-responsive" width="25" />
+            <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Uye/UyeProfil/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+            |
+            <i class="fas fa-edit"></i>
+            <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/KategoriMakale/@item.Kategori.KategoriId">@item.Kategori.KategoriAdi</a>
+            |
+            <i class="fas fa-tags"></i> @item.Etikets.Count()
+            |
+            <i class="fas fa-eye"></i> @item.Okunma
+            |
+            <i class="far fa-comments"></i> @item.Yorums.Count()
+
+        </div>
+    </article>
+}
+
+<ul class="pagination justify-content-center mb-4">
+    @Html.PagedListPager((X.PagedList.IPagedList)Model, pagee => Url.Action("KategoriMakale", new { pagee }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+
+
+</ul>

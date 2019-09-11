@@ -1,0 +1,69 @@
+﻿@using MvcBlogg.Models
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Bootstrap4
+@model IEnumerable<MvcBlogg.Models.Makale>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html lang="tr">
+
+<body>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <article class="card mb-4" style="border-radius:0">            
+            <a href="/Home/MakaleDetay/@item.MakaleId">  <img title="oku - @item.Baslik &rarr;" class="card-img-top img-responsive" style="border-radius:0" src="@item.Foto" alt="Card image cap"></a>
+            <div class="card-body">
+                <h2>
+                    <a class="nav-item" style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+                </h2>
+                @if (item.Icerik.Length > 150)
+                {
+                    <p class="card-text">
+                        @Html.Raw(HttpUtility.HtmlDecode(item.Icerik.Substring(0, 100)))
+                        . . .
+                    </p>
+                }
+                else
+                {
+                    @Html.Raw(item.Icerik)
+                }
+
+                <a href="/Home/MakaleDetay/@item.MakaleId" class="btn btn-dark" style="color:#fec771;border-color:#000000" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'">Devamını Oku &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+                <i class="fas fa-clock"></i>
+                @String.Format("{0: MMMM yyyy}", item.Tarih)
+                |
+                @*<i class="fas fa-user"></i>*@
+                <img src="@item.Uye.Foto" class="rounded-circle img-responsive" width="25" />
+                <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Uye/UyeProfil/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+                |
+                <i class="fas fa-edit"></i>
+                <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/KategoriMakale/@item.Kategori.KategoriId">@item.Kategori.KategoriAdi</a>
+                |
+                <i class="fas fa-tags"></i> @item.Etikets.Count()
+                |
+                <i class="fas fa-eye"></i> @item.Okunma
+                |
+                <i class="far fa-comments"></i> @item.Yorums.Count()
+
+            </div>
+        </article>
+    }
+
+
+    <ul class="pagination justify-content-center mb-4">
+        @Html.PagedListPager((X.PagedList.IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </ul>
+
+
+</body>
+</html>

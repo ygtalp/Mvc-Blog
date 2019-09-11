@@ -1,0 +1,85 @@
+﻿@model MvcBlogg.Models.Uye
+
+@{
+    ViewBag.Title = "UyeProfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <div class="p-3 mb-2 bg-dark text-white" style="margin-top:2px">
+        <h2>@Model.KullaniciAdi Profil</h2>
+    </div>
+
+    <hr />
+    <div class="p-3 mb-2 bg-dark text-white" style="margin-top:2px;display:flex">
+        <div class="col-md-6">
+            <h3>Bilgiler</h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Yetki.Yetki1)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Yetki.Yetki1)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.KullaniciAdi)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.KullaniciAdi)
+                </dd>
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <br />
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AdSoyad)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AdSoyad)
+                </dd>
+              
+                <br />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Foto)
+                </dt>
+
+                <dd>
+                    <img src="@Model.Foto" width="75" class="rounded-circle img-responsive" alt="@Model.AdSoyad" />
+
+                </dd>
+
+            </dl>
+        </div>
+
+        <div class="col-4">
+            <h3>Son Makaleler</h3>
+            @foreach (var item in Model.Makales.OrderByDescending(m => m.MakaleId).Take(5))
+            {
+                <ul style="padding-left:0px">
+                    <li style="list-style:none">
+                        <a class="btn btn-dark nav-link" style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/MakaleDetay/@item.MakaleId">
+                            @item.Baslik
+                        </a>
+                    </li>
+                    <hr />
+
+                </ul>
+            }
+           
+
+        </div>
+    </div>
+</div>

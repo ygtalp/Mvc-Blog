@@ -1,0 +1,135 @@
+﻿@model MvcBlogg.Models.Makale
+
+@{
+    ViewBag.Title = "MakaleDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="~/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet" />*@
+<script src="~/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- Page Content -->
+<!-- Post Content Column -->
+<!-- Title -->
+<div class="p-3 mb-2 bg-dark text-white line-numbers line-numbers-rows" style="margin-top:2px;">
+    <h1 class="mt-4">@Model.Baslik</h1>
+    <hr>
+    <!-- Author -->
+    <!-- Date/Time -->
+    <i class="fas fa-clock"></i>
+    @String.Format("{0: MMMM yyyy}", Model.Tarih)
+    |
+    @*<i class="fas fa-user"></i>*@
+    <img src="@Model.Uye.Foto" class="rounded-circle img-responsive" width="25" />
+    <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Uye/UyeProfil/@Model.Uye.UyeId">@Model.Uye.KullaniciAdi</a>
+    |
+    <i class="fas fa-edit"></i>
+    <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Home/KategoriMakale/@Model.Kategori.KategoriId">@Model.Kategori.KategoriAdi (@Model.Kategori.Makales.Count())</a>
+    |
+    <i class="far fa-comments"></i>
+    @Model.Yorums.Count()
+    <hr>
+    <img class="card-img-top img-responsive" src="@Model.Foto" alt="Card image cap">
+    
+   
+    <!-- Post Content -->
+
+        <p style="margin-top:30px">
+            @Html.Raw(Model.Icerik)
+        </p>
+
+
+        <hr>
+
+        <div class="well" style="text-align:left; padding-left:20px">
+            <i class="fas fa-tags" style="width:auto"></i>
+            @foreach (var item in Model.Etikets)
+            {
+                <span class="badge badge-light">@item.EtiketAdi</span>
+
+            }
+
+
+        </div>
+        <hr>
+    </div>
+
+    <div class="card my-4">
+        <h5 class="card-header">Yorum Ekle</h5>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <textarea id="yorum" typeof="text" class="form-control" rows="3"></textarea>
+
+                    @if (Session["uyeid"] != null)
+                    {
+                        <button id="gonder" type="submit" class="btn btn-success" style="margin-top:20px;float:right">Yorum Yap</button>
+
+                    }
+                    else
+                    {
+                        <h4>Yorum yapmak için kayıt olmalı ya da giriş yapmalısınız.</h4>
+                        <p><a class="btn btn-primary" href="/Uye/Login/">Giriş Yap</a></p>
+                    }
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @foreach (var item in Model.Yorums.ToList())
+    {
+        <div class="card my-4">
+            <div class="card-header">
+                <i class="fas fa-clock"></i> @item.Tarih |
+                <img src="@item.Uye.Foto" class="rounded-circle img-responsive" width="25" />
+                <a style="color:#fec771;" onMouseOver="this.style.color='#fdaa28'" onMouseOut="this.style.color='#fec771'" href="/Uye/UyeProfil/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+
+                @*<h5 class="mt-0">
+                    </h5>*@
+            </div>
+            <div class="card-body">
+                @item.Icerik @if (Convert.ToInt32(Session["uyeid"]) == item.UyeId)
+                {
+                    <a style="float:right" class="btn btn-danger" href="/Home/YorumSil/@item.YorumId">Sil</a>
+                }
+            </div>
+        </div>
+
+    }
+
+    <script src="~/Content/blog/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/blog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#gonder").click(function(){
+                var yorumunuz=$("#yorum").val();
+                $.ajax({
+                    url:'/Home/YorumYap/',
+                    data:{yorum:yorumunuz,Makaleid:@Model.MakaleId},
+                    type:'POST',
+                    dataType:'json',
+                    success:function(data){
+                        alert("Yorum Gönderildi",+yorumunuz);}
+                });
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $.ajax({
+                url:'/Home/OkunmaArttir',
+                data:{Makaleid: @Model.MakaleId},
+                type:'POST',
+            });
+        })
+
+    </script>
+
+<script src="~/Content/blog/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/blog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
