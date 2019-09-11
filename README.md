@@ -1,4 +1,4 @@
-# Mvc Blog  [dummpster.com](http://dummpster.com){:target="_blank"}
+# Mvc Blog  [dummpster.com](http://dummpster.com){:target="_blank" rel="noopener"}
 
 A simple Mvc Blog with Bootstrap.
 
