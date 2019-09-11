@@ -1,4 +1,4 @@
-# Mvc Blog  [dummpster.com](http://dummpster.com){:target="_blank"}
+# Mvc Blog <a href="http://dummpster.com" target="_blank">dummpster.com</a>
 
 A simple Mvc Blog with Bootstrap.
 
