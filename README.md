@@ -1,4 +1,5 @@
-# Mvc-Blog
+#  [dummpster.com](dummpster.com)
+
 A simple Mvc Blog with Bootstrap.
 
 As admin, you can add categories and articles in admin panel. After login, the admin panel is accessed according to the member type.
