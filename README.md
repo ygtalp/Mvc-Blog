@@ -1,4 +1,6 @@
+<p align="center">
 # ![logo4](/MvcBlogg/Content/logo4.png)
+</p>
 Mvc Blog [dummpster.com](http://dummpster.com)
 
 A simple Mvc Blog with Bootstrap.
