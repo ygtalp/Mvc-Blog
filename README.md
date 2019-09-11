@@ -1,4 +1,4 @@
-# Mvc Blog  [dummpster.com](dummpster.com)
+# Mvc Blog  [dummpster.com](http://dummpster.com)
 
 A simple Mvc Blog with Bootstrap.
 
