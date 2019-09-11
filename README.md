@@ -2,7 +2,7 @@
   <img width="350" height="325" src="./MvcBlogg/Content/logo4.png">
 </p>
 
-Mvc Blog [dummpster.com](http://dummpster.com)
+# Mvc Blog [dummpster.com](http://dummpster.com)
 
 A simple Mvc Blog with Bootstrap.
 
