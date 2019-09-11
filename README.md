@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="460" height="600" src="./MvcBlogg/Content/logo4.png">
+  <img width="700" height="650" src="./MvcBlogg/Content/logo4.png">
 </p>
 
 Mvc Blog [dummpster.com](http://dummpster.com)
