@@ -1,6 +1,7 @@
 # Mvc Blog 
 <a href="http://dummpster.com" target="_blank">dummpster.com</a>
 <a href="http://dummpster.com">dummpster.com</a>
+[Link](https://example.org/ "title" target="_blank")
 A simple Mvc Blog with Bootstrap.
 
 As admin, you can add categories and articles in admin panel. After login, the admin panel is accessed according to the member type.
@@ -12,8 +13,3 @@ Bootstrap templates: [blog home](https://startbootstrap.com/templates/blog-home/
 Text Editor: [CKEditor](https://ckeditor.com/ckeditor-4/).
 
 Database diagram: ![diagram](/MvcBlogg/Content/diagram.png)
-<script>
-  $(document.links).filter(function() {
-    return this.hostname != window.location.hostname;
-}).attr('target', '_blank');
-</script>
