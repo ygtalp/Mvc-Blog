@@ -9,4 +9,4 @@ Bootstrap templates: [blog home](https://startbootstrap.com/templates/blog-home/
 
 Text Editor: [CKEditor](https://ckeditor.com/ckeditor-4/).
 
-Database diagram: 
+Database diagram: ![diagram](/MvcBlogg/Content/diagram.png)
