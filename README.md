@@ -1,4 +1,4 @@
-# ![logo4](/Mvcblogg/Content/logo4.png)
+# ![logo4](/MvcBlogg/Content/logo4.png)
 Mvc Blog [dummpster.com](http://dummpster.com)
 
 A simple Mvc Blog with Bootstrap.
