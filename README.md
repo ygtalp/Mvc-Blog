@@ -1,10 +1,7 @@
 <p align="center">
   <img width="460" height="300" src="./MvcBlogg/Content/logo4.png">
+</p>
 
-</p>
-<p align="center">
-  <img width="460" height="300" src="http://www.fillmurray.com/460/300">
-</p>
 Mvc Blog [dummpster.com](http://dummpster.com)
 
 A simple Mvc Blog with Bootstrap.
