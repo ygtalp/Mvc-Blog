@@ -3,7 +3,7 @@
 <a href="http://dummpster.com">dummpster.com</a>
 [dummpster.com](http://dummpster.com "(target|_blank)")
 A simple Mvc Blog with Bootstrap.
-
+[My Github](https://github.com/cmatskas" target="_blank)
 As admin, you can add categories and articles in admin panel. After login, the admin panel is accessed according to the member type.
 
 Necessary security measures were taken. Login was provided through session.
